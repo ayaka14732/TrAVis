@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8" />
+  <title>Transformer Attention Visualiser</title>
+  <script src="https://cdn.jsdelivr.net/pyodide/v0.21.3/full/pyodide.js"></script>
+  <script>
+let fs, run;
+
+const copyFile = async (filename) => {
+  const request = await fetch(filename);
+  const response = await request.arrayBuffer();
+  fs.writeFile(filename, new Uint8Array(response));
+}
+
+const copyFiles = async(filenames) => {
+  await Promise.all(filenames.map(copyFile));
+}
+
+(async () => {
+  const pyodide = await loadPyodide();
+  await pyodide.loadPackage(['numpy', 'scipy', 'micropip']);
+  const micropip = pyodide.pyimport('micropip');
+  await micropip.install('word-piece-tokenizer');
+
+  fs = pyodide.FS;
+
+  await copyFiles(['model.py', 'params.npz']);
+
+  const req_code = await fetch('main.py');
+  const code = await req_code.text();
+
+  run = pyodide.runPython(code);
+
+  document.getElementById('initialise-indicator').classList.remove('hidden');
+})();
+
+const handleVisualise = async () => {
+  const input = document.getElementById('userInput').value;
+  const [qk_results, tokens] = run(input).toJs();
+  document.getElementById('result').innerText = [qk_results, tokens];
+}
+  </script>
+  <style>
+    .hidden {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <h1>Transformer Attention Visualiser</h1>
+  <input type="text" id="userInput" value="The rich white-collar worker from Costa Rica said his bamboo forest has been destroyed in a big fire." />
+  <input type="button" value="Visualise" onclick="handleVisualise()" />
+  <p class="hidden" id="initialise-indicator">Initialised!</p>
+  <output id="result"></output>
+</body>
+</html>

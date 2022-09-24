@@ -1,0 +1,46 @@
+embeddings
+  LayerNorm
+    bias: (768),
+    weight: (768)
+  position_embeddings
+    weight: (512, 768)
+  token_type_embeddings
+    weight: (2, 768)
+  word_embeddings
+    weight: (30522, 768)
+encoder
+  layer
+    0
+      attention
+        output
+          LayerNorm
+            bias: (768),
+            weight: (768)
+          dense
+            bias: (768),
+            weight: (768, 768)
+        self
+          key
+            bias: (768),
+            weight: (768, 768)
+          query
+            bias: (768),
+            weight: (768, 768)
+          value
+            bias: (768),
+            weight: (768, 768)
+      intermediate
+        dense
+          bias: (3072),
+          weight: (3072, 768)
+      output
+        LayerNorm
+          bias: (768),
+          weight: (768)
+        dense
+          bias: (768),
+          weight: (768, 3072)
+pooler
+  dense
+    bias: (768),
+    weight: (768, 768)

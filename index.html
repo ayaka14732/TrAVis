@@ -11,8 +11,10 @@
     <link rel="stylesheet" href="index.css" />
   </head>
   <body>
+    <div class="loading-indicator warning">Your Internet connection is working hard to bring the model weights to you. Fortunately, while you are waiting, you can still explore the attention matrices of the BERT model for the default sentence.</div>
     <h1>Transformer Attention Visualiser</h1>
     <div class="input-container">
+      Input:
       <div class="webflow-style-input">
         <input type="text" id="userInput" value="The rich white-collar worker from Costa Rica said his bamboo forest has been destroyed in a big fire." />
         <button id="visualise-input" class="hidden" onclick="handleVisualise(true)">

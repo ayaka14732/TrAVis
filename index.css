@@ -1,6 +1,7 @@
 * {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 
 body {
@@ -206,7 +207,8 @@ button {
   width: 15px;
   height: 10px;
   border-radius: 1px;
-  background: rgba(57, 63, 84, 0.8);
+  background: rgba(87, 230, 230, 0.8);
+  border: none;
   cursor: pointer;
 }
 
@@ -217,4 +219,13 @@ button {
   background: rgba(87, 230, 230, 0.8);
   border: none;
   cursor: pointer;
+}
+
+.warning {
+  background: rgba(187, 128, 9, 0.15);
+  border: 1px solid rgba(187, 128, 9, 0.4);
+  padding: 30px 20px;
+  color: rgb(201, 209, 217);
+  width: 100%;
+  margin-bottom: -30px;
 }

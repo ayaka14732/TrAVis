@@ -14,7 +14,7 @@ def run(s: str) -> tuple[list[list[list[list[float]]]], list[str]]:
     model.qk_results = []
     model.fwd_transformer(params, input_ids)
 
-    qk_results = [qk_result.tolist() for qk_result in model.qk_results]
+    qk_results = [qk_result[0].tolist() for qk_result in model.qk_results]
 
     return qk_results, tokens
 

@@ -4,60 +4,49 @@
     <meta charset="utf-8" />
     <title>Transformer Attention Visualiser</title>
     <script src="https://cdn.jsdelivr.net/pyodide/v0.21.3/full/pyodide.js"></script>
-    <script>
-      let fs, run;
-
-      const copyFile = async (filename) => {
-        const request = await fetch(filename);
-        const response = await request.arrayBuffer();
-        fs.writeFile(filename, new Uint8Array(response));
-      };
-
-      const copyFiles = async (filenames) => {
-        await Promise.all(filenames.map(copyFile));
-      };
-
-      (async () => {
-        const pyodide = await loadPyodide();
-        await pyodide.loadPackage(['numpy', 'scipy', 'micropip']);
-        const micropip = pyodide.pyimport('micropip');
-        await micropip.install('word-piece-tokenizer');
-
-        fs = pyodide.FS;
-
-        await copyFiles(['model.py', 'params.npz']);
-
-        const req_code = await fetch('main.py');
-        const code = await req_code.text();
-
-        run = pyodide.runPython(code);
-
-        document
-          .getElementById('initialise-indicator')
-          .classList.remove('hidden');
-      })();
-
-      const handleVisualise = async () => {
-        const input = document.getElementById('userInput').value;
-        const [qk_results, tokens] = run(input).toJs();
-        document.getElementById('result').innerText = [qk_results, tokens];
-      };
-    </script>
-    <style>
-      .hidden {
-        display: none;
-      }
-    </style>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="visualiser.js"></script>
+    <script src="demo_result.js"></script>
+    <script src="index.js"></script>
+    <link rel="stylesheet" href="index.css" />
   </head>
   <body>
     <h1>Transformer Attention Visualiser</h1>
-    <input
-      type="text"
-      id="userInput"
-      value="The rich white-collar worker from Costa Rica said his bamboo forest has been destroyed in a big fire."
-    />
-    <input type="button" value="Visualise" onclick="handleVisualise()" />
-    <p class="hidden" id="initialise-indicator">Initialised!</p>
+    <div class="input-container">
+      <div class="webflow-style-input">
+        <input type="text" id="userInput" value="The rich white-collar worker from Costa Rica said his bamboo forest has been destroyed in a big fire." />
+        <button id="visualise-input" class="hidden" onclick="handleVisualise(true)">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+            <!--! Font Awesome Pro 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
+            <path fill="white" d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z" />
+          </svg>
+        </button>
+        <button>
+          <div class="lds-ring loading-indicator">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+          </div>
+        </button>
+      </div>
+    </div>
+    <div class="slider-wrapper">
+      <label for="layer-input">Layer 6</label>
+      <div class="slider">
+        <input type="range" min="0" max="11" value="6" step="1" id="layer-input" onchange="handleVisualise()" />
+      </div>
+    </div>
+    <div class="slider-wrapper">
+      <label for="head-input">Head 3</label>
+      <div class="slider">
+        <input type="range" min="0" max="11" value="3" step="1" id="head-input" onchange="handleVisualise()" />
+      </div>
+    </div>
+    <div id="my_dataviz"></div>
     <output id="result"></output>
   </body>
+  <script>
+    handleVisualise();
+  </script>
 </html>

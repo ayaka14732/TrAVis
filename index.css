@@ -7,7 +7,7 @@
 body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-family: 'Montserrat', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 
   background: #191919;
   color: white;
@@ -16,10 +16,25 @@ body {
   flex-direction: column;
   align-items: center;
   gap: 20px;
+
+  line-height: 1.5;
 }
 
 h1 {
   margin-top: 30px;
+}
+
+a {
+  color: #57e6e6;
+  text-decoration: none;
+}
+
+a:visited {
+  color: #b294ff;
+}
+
+p {
+  margin: 1em 0;
 }
 
 .range-slider {
@@ -224,8 +239,19 @@ button {
 .warning {
   background: rgba(187, 128, 9, 0.15);
   border: 1px solid rgba(187, 128, 9, 0.4);
-  padding: 30px 20px;
+  padding: 20px;
   color: rgb(201, 209, 217);
   width: 100%;
-  margin-bottom: -30px;
+  margin-bottom: -20px;
+}
+
+.content-container {
+  width: 60%;
+  max-width: 1080px;
+}
+
+@media screen and (max-width: 600px) {
+  .content-container {
+    width: 90%;
+  }
 }

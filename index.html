@@ -1,14 +1,21 @@
 <!DOCTYPE html>
 <html lang="en-GB">
   <head>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <meta charset="utf-8" />
     <title>Transformer Attention Visualiser</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="Ayaka, Nixie (Jing Hua)" />
+    <meta name="keywords" content="Transformer, BERT, attention mechanism, attention matrices, visualiser" />
+    <meta name="description" content="TrAVis is a Transformer attention visualiser that can visualise BERT attention matrices in your browser." />
     <script src="https://cdn.jsdelivr.net/pyodide/v0.21.3/full/pyodide.js"></script>
     <script src="https://d3js.org/d3.v7.min.js"></script>
     <script src="visualiser.js"></script>
     <script defer src="demo_result.js"></script>
     <script defer src="index.js"></script>
     <link rel="stylesheet" href="index.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,700;1,400&display=swap" />
   </head>
   <body>
     <div class="loading-indicator warning">The web page is bringing the model weights to you. While you are waiting, you can still explore the attention matrices of the BERT model for the default sentence.</div>
@@ -47,5 +54,20 @@
     </div>
     <div id="my_dataviz"></div>
     <output id="result"></output>
+    <div class="content-container">
+      <h2>What is this?</h2>
+      <p>TrAVis is a Transformer Attention Visualiser. The idea of visualising the attention matrices is inspired by <a href="https://arxiv.org/abs/1409.0473"><em>Neural Machine Translation by Jointly Learning to Align and Translate</em></a>.</p>
+      <p>The original paper of the Transformer model was named <a href="https://arxiv.org/abs/1706.03762"><em>Attention Is All You Need</em></a>, demonstrating the centrality of the attention mechanism to Transformer-based models. These models generate attention matrices during the computation of the attention mechanism, which indicate how the models process the input data, and can therefore be seen as a concrete representation of the mechanism.</p>
+      <p>In the <a href="https://arxiv.org/abs/1810.04805">BERT</a> Base Uncased model, for example, there are 12 transformer layers, each layer contains 12 heads, and each head generates one attention matrix. TrAVis is the tool for visualising these attention matrices.</p>
+      <h2>Why is it important?</h2>
+      <p>Despite the popularity of Transformer-based models, we often utilise them by just simply running the training scripts, ignoring what is going on inside the model.</p>
+      <p>TrAVis helps us to better understand how Transformer-based models work internally, thus enabling us to better exploit them to solve our problems and, furthermore, giving us inspirations to make improvements to the model architecture.</p>
+      <h2>How does it work?</h2>
+      <p>The project consists of 4 parts.</p>
+      <p>Firstly, we implemented the <a href="https://arxiv.org/abs/1910.13461">BART</a> model from scratch using JAX. We chose JAX because it is an amazing deep learning framework that enables us to write clear source code, and it can be easily converted to NumPy, which can be executed in-browser. We chose the BART model because it is a complete encoder-decoder model, so it can be easily adapted to other models, such as BERT, by simply taking a subset of the source code.</p>
+      <p>Secondly, we <a href="https://github.com/ztjhz/word-piece-tokenizer">re-implemented</a> the HuggingFace BERT Tokeniser using pure Python, as it can be more easily executed in-browser. Moreover, we have optimised the tokenisation algorithm, which is 57% faster than the original HuggingFace implementation.</p>
+      <p>Thirdly, we use <a href="https://pyodide.org/">Pyodide</a> to run our Python code in browser. Pyodide supports all Python libraries implemented in pure Python, with additional support for a number of other libraries such as NumPy and SciPy.</p>
+      <p>Fourthly, we visualise the attention matrices on the web page using <a href="https://d3js.org/">d3.js</a>.</p>
+    </div>
   </body>
 </html>

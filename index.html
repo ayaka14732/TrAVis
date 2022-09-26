@@ -15,13 +15,13 @@
     <script defer src="demo_result.js"></script>
     <script defer src="index.js"></script>
     <link rel="stylesheet" href="index.css" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,700;1,400&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,400;1,700&family=Rubik:ital,wght@0,400;0,600;1,400;1,600&display=swap" />
   </head>
   <body>
     <div class="loading-indicator warning">The web page is bringing the model weights to you. While you are waiting, you can still explore the attention matrices of the BERT model for the default sentence.</div>
-    <h1>Transformer Attention Visualiser</h1>
+    <h1>TrAVis: Transformer Attention Visualiser</h1>
     <div class="input-container">
-      Input:
+      <p>Input the sentence you want to visualise:</p>
       <div class="webflow-style-input">
         <input type="text" id="userInput" value="The rich white-collar worker from Costa Rica said his bamboo forest has been destroyed in a big fire." />
         <button id="visualise-input" class="hidden" onclick="handleVisualise(true)">
@@ -45,15 +45,12 @@
       <div class="slider">
         <input type="range" min="0" max="11" value="6" step="1" id="layer-input" onchange="handleVisualise()" />
       </div>
-    </div>
-    <div class="slider-wrapper">
       <label for="head-input">Head 3</label>
       <div class="slider">
         <input type="range" min="0" max="11" value="3" step="1" id="head-input" onchange="handleVisualise()" />
       </div>
     </div>
     <div id="my_dataviz"></div>
-    <output id="result"></output>
     <div class="content-container">
       <h2>What is this?</h2>
       <p>TrAVis (source code on <a href="https://github.com/ayaka14732/TrAVis">GitHub</a>) is a Transformer Attention Visualiser. The idea of visualising the attention matrices is inspired by <a href="https://arxiv.org/abs/1409.0473"><em>Neural Machine Translation by Jointly Learning to Align and Translate</em></a>.</p>
@@ -65,7 +62,7 @@
       <p>The project consists of 4 parts.</p>
       <p>Firstly, we <a href="https://github.com/ayaka14732/bart-base-jax"><b>implemented</b></a> the <a href="https://arxiv.org/abs/1910.13461">BART</a> model from scratch using <a href="https://github.com/google/jax">JAX</a>. We chose JAX because it is an amazing deep learning framework that enables us to write clear source code, and it can be easily converted to NumPy, which can be executed in-browser. We chose the BART model because it is a complete encoder-decoder model, so it can be easily adapted to other models, such as BERT, by simply taking a subset of the source code.</p>
       <p>Secondly, we <a href="https://github.com/ztjhz/word-piece-tokenizer"><b>implemented</b></a> the <a href="https://huggingface.co/docs/transformers/model_doc/bert#transformers.BertTokenizer">HuggingFace BERT Tokeniser</a> in pure Python, as it can be more easily executed in-browser. Moreover, we have optimised the tokenisation algorithm, which is 57% faster than the original HuggingFace implementation.</p>
-      <p>Thirdly, we use <a href="https://pyodide.org/">Pyodide</a> to run our Python code in browser. Pyodide supports all Python libraries implemented in pure Python, with additional support for a number of other libraries such as NumPy and SciPy.</p>
+      <p>Thirdly, we use <a href="https://pyodide.org/">Pyodide</a> to run our Python code in browser. Pyodide supports all Python libraries implemented in pure Python, with <a href="https://pyodide.org/en/stable/usage/packages-in-pyodide.html">additional support</a> for a number of other libraries such as NumPy and SciPy.</p>
       <p>Fourthly, we visualise the attention matrices on the web page using <a href="https://d3js.org/">d3.js</a>.</p>
       <footer class="centered">Brought to you with <span class="emoji">❤️</span> by <a href="https://github.com/ayaka14732">Ayaka</a> and <a href="https://github.com/ztjhz">Nixie (Jing Hua)</a></footer>
     </div>

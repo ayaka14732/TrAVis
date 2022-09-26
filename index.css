@@ -7,10 +7,10 @@
 body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-family: 'Montserrat', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-family: Rubik, 'Helvetica Neue', Helvetica, Arial, sans-serif;
 
   background: #191919;
-  color: white;
+  color: #e4e4e4;
 
   display: flex;
   flex-direction: column;
@@ -45,12 +45,6 @@ footer {
 .range-slider {
   display: flex;
   align-items: center;
-}
-
-.input-container {
-  display: flex;
-  align-items: center;
-  gap: 10px;
 }
 
 .range-slider label {
@@ -110,6 +104,8 @@ input {
   border-style: none;
   background: transparent;
   outline: none;
+  font-family: inherit;
+  color: inherit;
 }
 
 button {
@@ -134,66 +130,25 @@ button {
   height: 16px;
 }
 
-@-webkit-keyframes gradient {
-  0% {
-    background-position: 0 0;
-  }
-  100% {
-    background-position: 100% 0;
-  }
-}
-
-@keyframes gradient {
-  0% {
-    background-position: 0 0;
-  }
-  100% {
-    background-position: 100% 0;
-  }
-}
 .webflow-style-input {
   position: relative;
   display: flex;
   flex-direction: row;
   gap: 10px;
-  width: 80vw;
+  width: 90vw;
   margin: 0 auto;
   border-radius: 2px;
-  padding: 0.7rem 1rem;
+  padding: 1rem 1.2rem;
   background: rgba(57, 63, 84, 0.8);
 }
-.webflow-style-input:after,
-.slider:after {
-  content: '';
-  position: absolute;
-  left: 0px;
-  right: 0px;
-  bottom: 0px;
-  z-index: 999;
-  height: 2px;
-  border-bottom-left-radius: 2px;
-  border-bottom-right-radius: 2px;
-  background-position: 0% 0%;
-  background: linear-gradient(
-    to right,
-    #b294ff,
-    #57e6e6,
-    #feffb8,
-    #57e6e6,
-    #b294ff,
-    #57e6e6
-  );
-  background-size: 500% auto;
-  -webkit-animation: gradient 3s linear infinite;
-  animation: gradient 3s linear infinite;
-}
+
 .slider:after {
   height: 1px;
 }
 
 .webflow-style-input input {
   flex-grow: 1;
-  color: #bfd2ff;
+  font-size: 110%;
   vertical-align: middle;
 }
 .webflow-style-input input::-webkit-input-placeholder {
@@ -252,6 +207,8 @@ button {
 .warning {
   background: rgba(187, 128, 9, 0.15);
   border: 1px solid rgba(187, 128, 9, 0.4);
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 90%;
   padding: 20px;
   color: rgb(201, 209, 217);
   width: 100%;
@@ -259,6 +216,7 @@ button {
 }
 
 .content-container {
+  font-family: Roboto, sans-serif;
   width: 60%;
   max-width: 1080px;
 }

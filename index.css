@@ -7,14 +7,16 @@
 body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-family: "Rubik Light", sans-serif;
+  font-family: 'Rubik Light', sans-serif;
 
   background: #191919;
   color: #e4e4e4;
   line-height: 1.5;
 }
 
-h1, h2, p {
+h1,
+h2,
+p {
   margin: 1em 0;
 }
 
@@ -42,9 +44,13 @@ main {
 footer {
   margin: 30px 0 20px 0;
   font-style: italic;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
-body > h1, #my_dataviz {
+body > h1,
+#my_dataviz {
   text-align: center;
 }
 
@@ -172,7 +178,13 @@ button {
 
 /* range input */
 .slider {
-  position: relative;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+}
+.slider label {
+  min-width: fit-content;
 }
 
 .slider-wrapper {
@@ -180,6 +192,7 @@ button {
   gap: 10px;
   align-items: center;
   justify-content: center;
+  flex-wrap: wrap;
 
   margin-top: 2rem;
 }

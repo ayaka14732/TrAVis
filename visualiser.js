@@ -94,7 +94,7 @@ const visualiserBuildScale = (svg, width, height, xValues, yValues, tokens) => {
 
   svg
     .append('g')
-    .style('font-size', 15)
+    .style('font-size', 'clamp(8px, 1vw ,12px)')
     .call(
       d3
         .axisTop(xScale)
@@ -111,7 +111,7 @@ const visualiserBuildScale = (svg, width, height, xValues, yValues, tokens) => {
   const yScale = d3.scaleBand().range([0, height]).domain(yValues);
   svg
     .append('g')
-    .style('font-size', 15)
+    .style('font-size', 'clamp(8px, 1vw ,12px)')
     .call(
       d3
         .axisLeft(yScale)

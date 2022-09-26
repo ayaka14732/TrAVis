@@ -5,9 +5,16 @@ const visualiserID = '#my_dataviz';
  */
 const visualiserRun = (rawData, tokens) => {
   // set the dimensions and margins of the graph
-  const margin = { top: 80, right: 0, bottom: 0, left: 80 },
-    width = 500 - margin.left - margin.right,
-    height = 500 - margin.top - margin.bottom;
+  windowWidth = window.innerWidth;
+  windowHeight = window.innerHeight;
+  let length = Math.min(windowWidth * 0.7, windowHeight * 0.6);
+  const margin = { top: 80, right: 0, bottom: 0, left: 80 };
+  if (windowWidth < 768) {
+    length = Math.min(windowWidth * 0.9, windowHeight * 0.6);
+    margin.left = 60;
+  }
+  const width = length - margin.left - margin.right;
+  const height = length - margin.top - margin.bottom;
 
   const data = prepareData(rawData, tokens);
   const svg = visualiserInitialiseHeatmap(width, height, margin);

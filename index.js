@@ -75,3 +75,7 @@ const handleVisualise = async (newInput = false) => {
   qk_results = await getDefaultQkResults();
   handleVisualise();
 })();
+
+window.addEventListener('resize', () => {
+  qk_results && handleVisualise(false);
+});

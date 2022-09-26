@@ -7,21 +7,15 @@
 body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-family: Rubik, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-family: "Rubik Light", sans-serif;
 
   background: #191919;
   color: #e4e4e4;
-
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 20px;
-
   line-height: 1.5;
 }
 
-h1 {
-  margin-top: 30px;
+h1, h2, p {
+  margin: 1em 0;
 }
 
 a {
@@ -33,13 +27,25 @@ a:visited {
   color: #b294ff;
 }
 
-p {
-  margin: 1em 0;
+main {
+  margin: 0 auto;
+  padding: 0 1em;
+  max-width: 1080px;
+}
+
+@media screen and (min-width: 768px) {
+  main {
+    width: 750px;
+  }
 }
 
 footer {
   margin: 30px 0 20px 0;
   font-style: italic;
+}
+
+body > h1, #my_dataviz {
+  text-align: center;
 }
 
 .range-slider {
@@ -173,6 +179,9 @@ button {
   display: flex;
   gap: 10px;
   align-items: center;
+  justify-content: center;
+
+  margin-top: 2rem;
 }
 
 .slider input {
@@ -212,17 +221,4 @@ button {
   padding: 20px;
   color: rgb(201, 209, 217);
   width: 100%;
-  margin-bottom: -20px;
-}
-
-.content-container {
-  font-family: Roboto, sans-serif;
-  width: 60%;
-  max-width: 1080px;
-}
-
-@media screen and (max-width: 600px) {
-  .content-container {
-    width: 90%;
-  }
 }

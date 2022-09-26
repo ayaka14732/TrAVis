@@ -5,7 +5,7 @@ const visualiserID = '#my_dataviz';
  */
 const visualiserRun = (rawData, tokens) => {
   // set the dimensions and margins of the graph
-  const margin = { top: 80, right: 25, bottom: 30, left: 40 },
+  const margin = { top: 80, right: 0, bottom: 0, left: 80 },
     width = 500 - margin.left - margin.right,
     height = 500 - margin.top - margin.bottom;
 
@@ -95,6 +95,7 @@ const visualiserBuildScale = (svg, width, height, xValues, yValues, tokens) => {
         .tickFormat((x) => tokens[x])
     )
     .selectAll('text')
+    .attr('font-family', 'Times')
     .attr('transform', 'rotate(45)')
     .style('text-anchor', 'end');
   svg.select('.domain').remove();
@@ -110,8 +111,9 @@ const visualiserBuildScale = (svg, width, height, xValues, yValues, tokens) => {
         .tickSize(0)
         .tickFormat((y) => tokens[y])
     )
-    .select('.domain')
-    .remove();
+    .selectAll('text')
+    .attr('font-family', 'Times');
+  svg.select('.domain').remove();
 
   // Build color scale
   const maximum = 1;

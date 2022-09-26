@@ -17,11 +17,11 @@ const concatArrays = (arrs) => {
 };
 
 const getParams = async () => {
-  const baseUrl = "https://ayaka-cdn.shn.hk/bert-base-uncased/params.npz.";
+  const baseUrl = 'https://ayaka-cdn.shn.hk/bert-base-uncased/params.npz.';
   const allParams = await Promise.all(
     [...Array(16).keys()].map(async (i) => {
-      const url = baseUrl + String(i).padStart(2, "0");
-      const request = await fetch(url, { cache: "force-cache" });
+      const url = baseUrl + String(i).padStart(2, '0');
+      const request = await fetch(url, { cache: 'force-cache' });
       const response = await request.arrayBuffer();
       return new Uint8Array(response);
     })
@@ -34,33 +34,33 @@ const getParams = async () => {
   pyodide = await loadPyodide();
   fs = pyodide.FS;
   const codePromise = Promise.all([
-    fetch("main.py").then((response) => response.text()),
-    pyodide.loadPackage(["numpy", "scipy"]),
+    fetch('main.py').then((response) => response.text()),
+    pyodide.loadPackage(['numpy', 'scipy']),
     pyodide
-      .loadPackage("micropip")
-      .then(() => pyodide.pyimport("micropip").install("word-piece-tokenizer")),
-    copyFile("model.py"),
+      .loadPackage('micropip')
+      .then(() => pyodide.pyimport('micropip').install('word-piece-tokenizer')),
+    copyFile('model.py'),
   ]);
   const params = await paramsPromise;
-  fs.writeFile("params.npz", params);
+  fs.writeFile('params.npz', params);
   const [code] = await codePromise;
 
   run = pyodide.runPython(code);
 
-  document.querySelector("#visualise-input").classList.remove("hidden");
+  document.querySelector('#visualise-input').classList.remove('hidden');
   document
-    .querySelectorAll(".loading-indicator")
-    .forEach((elem) => elem.classList.add("hidden"));
+    .querySelectorAll('.loading-indicator')
+    .forEach((elem) => elem.classList.add('hidden'));
 })();
 
 const handleVisualise = async (newInput = false) => {
   if (newInput) {
-    const input = document.getElementById("userInput").value;
+    const input = document.getElementById('userInput').value;
     [qk_results, tokens] = await run(input).toJs();
   }
 
-  const layer_input = document.getElementById("layer-input").value | 0;
-  const head_input = document.getElementById("head-input").value | 0;
+  const layer_input = document.getElementById('layer-input').value | 0;
+  const head_input = document.getElementById('head-input').value | 0;
 
   document.querySelector(
     "label[for='layer-input']"

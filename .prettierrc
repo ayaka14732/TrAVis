@@ -1,3 +1,13 @@
 {
-  "overrides": [{ "files": ["*.html"], "options": { "printWidth": 1024 } }]
+  "overrides": [{ "files": ["*.html"], "options": { "printWidth": 1024 } }],
+  "printWidth": 80,
+  "tabWidth": 2,
+  "useTabs": false,
+  "semi": true,
+  "singleQuote": true,
+  "jsxSingleQuote": false,
+  "trailingComma": "es5",
+  "bracketSpacing": true,
+  "jsxBracketSameLine": false,
+  "arrowParens": "always"
 }

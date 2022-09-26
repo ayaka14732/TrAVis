@@ -70,3 +70,8 @@ const handleVisualise = async (newInput = false) => {
   ).innerHTML = `Head ${head_input}`;
   visualiserRun(qk_results[layer_input][head_input], tokens);
 };
+
+(async () => {
+  qk_results = await getDefaultQkResults();
+  handleVisualise();
+})();

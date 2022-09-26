@@ -6,12 +6,12 @@
     <script src="https://cdn.jsdelivr.net/pyodide/v0.21.3/full/pyodide.js"></script>
     <script src="https://d3js.org/d3.v7.min.js"></script>
     <script src="visualiser.js"></script>
-    <script src="demo_result.js"></script>
-    <script src="index.js"></script>
+    <script defer src="demo_result.js"></script>
+    <script defer src="index.js"></script>
     <link rel="stylesheet" href="index.css" />
   </head>
   <body>
-    <div class="loading-indicator warning">Your Internet connection is working hard to bring the model weights to you. Fortunately, while you are waiting, you can still explore the attention matrices of the BERT model for the default sentence.</div>
+    <div class="loading-indicator warning">The web page is bringing the model weights to you. While you are waiting, you can still explore the attention matrices of the BERT model for the default sentence.</div>
     <h1>Transformer Attention Visualiser</h1>
     <div class="input-container">
       Input:
@@ -48,7 +48,4 @@
     <div id="my_dataviz"></div>
     <output id="result"></output>
   </body>
-  <script>
-    handleVisualise();
-  </script>
 </html>

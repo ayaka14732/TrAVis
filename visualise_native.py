@@ -8,7 +8,7 @@ import model
 tokenizer = WordPieceTokenizer()
 params = np.load('params.npz', allow_pickle=True)['arr_0'][()]
 
-s = 'The rich white-collar worker from Costa Rica said his bamboo forest has been destroyed in a big fire.'
+s = 'A wealthy white-collar worker from Costa Rica working in our marketing agency has set up a marine conservation centre.'
 token_ids = tokenizer.tokenize(s)
 input_ids = np.array([token_ids], dtype=np.uint16)
 tokens = [tokenizer._convert_id_to_token(i) for i in token_ids]

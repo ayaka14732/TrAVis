@@ -147,7 +147,7 @@ button {
   display: flex;
   flex-direction: row;
   gap: 10px;
-  width: 90vw;
+  width: 80vw;
   margin: 0 auto;
   border-radius: 2px;
   padding: 1rem 1.2rem;

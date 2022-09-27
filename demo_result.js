@@ -2,8 +2,8 @@ let qk_results;
 
 let tokens = [
   '[CLS]',
-  'the',
-  'rich',
+  'a',
+  'wealthy',
   'white',
   '-',
   'collar',
@@ -11,38 +11,44 @@ let tokens = [
   'from',
   'costa',
   'rica',
-  'said',
-  'his',
-  'bamboo',
-  'forest',
-  'has',
-  'been',
-  'destroyed',
+  'working',
   'in',
+  'our',
+  'marketing',
+  'agency',
+  'has',
+  'set',
+  'up',
   'a',
-  'big',
-  'fire',
+  'marine',
+  'conservation',
+  'centre',
   '.',
   '[SEP]',
 ];
 
-const getDefaultQkResults = async () => {
-  const request = await fetch('default_qk_results.dat');
-  const buffer = await request.arrayBuffer();
-  const array = [...new Float32Array(buffer)];
+const reshapeList4D = (array, d0, d1, d2, d3) => {
   const it = array[Symbol.iterator]();
   const res = [];
-  for (let i = 0; i < 12; i++) {
+  for (let i = 0; i < d0; i++) {
     res.push([]);
-    for (let j = 0; j < 12; j++) {
+    for (let j = 0; j < d1; j++) {
       res[i].push([]);
-      for (let k = 0; k < 23; k++) {
+      for (let k = 0; k < d2; k++) {
         res[i][j].push([]);
-        for (let l = 0; l < 23; l++) {
+        for (let l = 0; l < d3; l++) {
           res[i][j][k].push(it.next().value);
         }
       }
     }
   }
   return res;
+};
+
+const getDefaultQkResults = async () => {
+  const request = await fetch('default_qk_results.dat');
+  const buffer = await request.arrayBuffer();
+  const array = [...new Float32Array(buffer)];
+  const array4D = reshapeList4D(array, 12, 12, 24, 24);
+  return array4D;
 };

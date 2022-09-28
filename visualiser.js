@@ -5,16 +5,17 @@ const visualiserID = '#my_dataviz';
  */
 const visualiserRun = (rawData, tokens) => {
   // set the dimensions and margins of the graph
-  windowWidth = window.innerWidth;
-  windowHeight = window.innerHeight;
-  let length = Math.min(windowWidth * 0.7, windowHeight * 0.6);
-  const margin = { top: 80, right: 0, bottom: 0, left: 80 };
-  if (windowWidth < 768) {
-    length = Math.min(windowWidth * 0.9, windowHeight * 0.6);
-    margin.left = 60;
-  }
-  const width = length - margin.left - margin.right;
-  const height = length - margin.top - margin.bottom;
+  containerWidth = window.innerWidth * 0.9;
+  containerWidth = containerWidth > 900 ? 900 : containerWidth;
+  let length = containerWidth * 0.7;
+  const margin = {
+    top: 120,
+    right: Math.floor((containerWidth - length) / 2),
+    bottom: 0,
+    left: Math.floor((containerWidth - length) / 2),
+  };
+  const width = containerWidth - margin.right - margin.left;
+  const height = width;
 
   const data = prepareData(rawData, tokens);
   const svg = visualiserInitialiseHeatmap(width, height, margin);
@@ -94,7 +95,7 @@ const visualiserBuildScale = (svg, width, height, xValues, yValues, tokens) => {
 
   svg
     .append('g')
-    .style('font-size', 'clamp(8px, 1vw ,12px)')
+    .style('font-size', 'clamp(8px, 1.2vw, 17px)')
     .call(
       d3
         .axisTop(xScale)
@@ -102,7 +103,7 @@ const visualiserBuildScale = (svg, width, height, xValues, yValues, tokens) => {
         .tickFormat((x) => tokens[x])
     )
     .selectAll('text')
-    .attr('font-family', 'Times')
+    .attr('font-family', 'Arial')
     .attr('transform', 'rotate(45)')
     .style('text-anchor', 'end');
   svg.select('.domain').remove();
@@ -111,7 +112,7 @@ const visualiserBuildScale = (svg, width, height, xValues, yValues, tokens) => {
   const yScale = d3.scaleBand().range([0, height]).domain(yValues);
   svg
     .append('g')
-    .style('font-size', 'clamp(8px, 1vw ,12px)')
+    .style('font-size', 'clamp(8px, 1.2vw, 17px)')
     .call(
       d3
         .axisLeft(yScale)
@@ -119,7 +120,7 @@ const visualiserBuildScale = (svg, width, height, xValues, yValues, tokens) => {
         .tickFormat((y) => tokens[y])
     )
     .selectAll('text')
-    .attr('font-family', 'Times');
+    .attr('font-family', 'Arial');
   svg.select('.domain').remove();
 
   // Build color scale

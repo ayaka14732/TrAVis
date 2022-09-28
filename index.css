@@ -25,10 +25,6 @@ a {
   text-decoration: none;
 }
 
-a:visited {
-  color: #b294ff;
-}
-
 main {
   margin: 0 auto;
   padding: 0 1em;
@@ -49,8 +45,13 @@ footer {
   justify-content: center;
 }
 
-body > h1,
+body > h1 {
+  text-align: center;
+}
+
 #my_dataviz {
+  width: 90vw;
+  margin: 0 auto;
   text-align: center;
 }
 

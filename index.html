@@ -42,19 +42,20 @@
         </button>
       </div>
     </div>
-    <main>
-      <div class="slider-wrapper">
-        <div class="slider">
-          <label for="layer-input">Layer 6</label>
-          <input type="range" min="0" max="11" value="6" step="1" id="layer-input" onchange="handleVisualise()" />
-        </div>
-        <div class="slider">
-          <label for="head-input">Head 9</label>
-          <input type="range" min="0" max="11" value="9" step="1" id="head-input" onchange="handleVisualise()" />
-        </div>
-      </div>
-      <div id="my_dataviz"></div>
 
+    <div class="slider-wrapper">
+      <div class="slider">
+        <label for="layer-input">Layer 6</label>
+        <input type="range" min="0" max="11" value="6" step="1" id="layer-input" onchange="handleVisualise()" />
+      </div>
+      <div class="slider">
+        <label for="head-input">Head 9</label>
+        <input type="range" min="0" max="11" value="9" step="1" id="head-input" onchange="handleVisualise()" />
+      </div>
+    </div>
+    <div id="my_dataviz"></div>
+    
+    <main>
       <h2>What is this?</h2>
       <p>TrAVis (source code on <a href="https://github.com/ayaka14732/TrAVis">GitHub</a>) is a Transformer Attention Visualiser. The idea of visualising the attention matrices is inspired by <a href="https://arxiv.org/abs/1409.0473"><em>Neural Machine Translation by Jointly Learning to Align and Translate</em></a>.</p>
       <p>The original paper of the Transformer model was named <a href="https://arxiv.org/abs/1706.03762"><em>Attention Is All You Need</em></a>, demonstrating the centrality of the attention mechanism to <a href="https://huggingface.co/docs/transformers/model_summary">Transformer-based models</a>. These models generate attention matrices during the computation of the attention mechanism, which indicate how the models process the input data, and can therefore be seen as a concrete representation of the mechanism.</p>

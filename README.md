@@ -12,7 +12,7 @@ In the [BERT](https://arxiv.org/abs/1810.04805) Base Uncased model, for example,
 
 ## Why is it important?
 
-Despite the popularity of Transformer-based models, people often utilise them by just simply running the training scripts, ignoring what is going on inside the model. TrAVis helps us to better understand how Transformer-based models work internally, thus enabling us to better exploit them to solve our problems and, furthermore, giving us inspirations to make improvements to the model architecture.
+As Transformer-based models continue to dominate the field of NLP, it's crucial that we not only utilise these models, but also have a deep understanding of how they operate. TrAVis offers an unprecedented level of insight into the inner workings of these models, allowing us to fully leverage their capabilities to solve complex challenges. With this deeper understanding, we can not only optimise the models for specific tasks, but also inspire new innovations and improvements to the architecture. By taking advantage of TrAVis, we can unlock the full potential of Transformer-based models and drive new advancements in the field of NLP.
 
 ## How does it work?
 
